@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ثانوية النور الأهلية</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--tx:#12263f;--mut:#6b7a90;--pri:#0b5ed7;--pri2:#0a3f94;--bd:#e1e8f2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1520;--card:#162233;--tx:#e8eef7;--mut:#94a3b8;--bd:#25354b}}
+:root[data-theme="dark"]{--bg:#0d1520;--card:#162233;--tx:#e8eef7;--mut:#94a3b8;--bd:#25354b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Tahoma,"Segoe UI",Arial,sans-serif;min-height:100vh}
+.hdr{position:relative;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;padding:22px 16px 26px;text-align:center;border-radius:0 0 28px 28px}
+.gear{position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.22);color:#fff;font-size:22px;cursor:pointer}
+.logo{width:76px;height:76px;border-radius:50%;background:#fff;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:38px;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:cover}
+.hdr h1{margin:0;font-size:22px}.hdr p{margin:4px 0 0;opacity:.85;font-size:14px}
+main{max-width:640px;margin:0 auto;padding:18px 14px 40px}
+h2{font-size:17px;margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.one{grid-template-columns:1fr}
+.tile{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px 10px;text-align:center;cursor:pointer;font:inherit;color:inherit;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.tile:active{transform:scale(.97)}.tile .ic{font-size:30px;display:block;margin-bottom:6px}.tile b{font-size:16px}
+.big{padding:30px 10px}.big b{font-size:19px}
+.dot{position:absolute;top:10px;right:10px;width:14px;height:14px;border-radius:50%;background:#e5232d;box-shadow:0 0 0 3px rgba(229,35,45,.25)}
+.back{background:var(--pri);border:0;color:#fff;font:inherit;font-weight:700;font-size:15px;padding:9px 18px;border-radius:22px;cursor:pointer;margin-bottom:12px}
+.tabs{display:flex;gap:8px;margin:10px 0 14px}
+.tabs button{flex:1;padding:11px 4px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-weight:700;cursor:pointer;font-size:13px}
+.tabs button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.item{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:13px;margin-bottom:10px}
+.item .t{white-space:pre-wrap;line-height:1.7}.item .m{color:var(--mut);font-size:12px;margin-top:6px}
+.ans{margin-top:8px;padding:9px;border-radius:10px;background:rgba(127,127,127,.14);white-space:pre-wrap;line-height:1.6}
+textarea,input[type=text],input[type=date],select{width:100%;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;padding:10px;margin-bottom:8px}
+textarea{min-height:80px;resize:vertical}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer}
+.btn.s{padding:6px 12px;font-size:13px;margin-top:6px}.btn.d{background:#d33}.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.empty{text-align:center;color:var(--mut);padding:28px 0}
+.tag{display:inline-block;background:#ffe9a8;color:#6b4e00;border-radius:8px;padding:2px 8px;font-size:12px;margin-top:8px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--bg);width:100%;max-width:640px;max-height:85vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom,0px))}
+.sheet h3{margin:14px 0 8px;font-size:15px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.av{width:56px;height:56px;border-radius:50%;background:var(--card);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:26px;overflow:hidden;flex:none}.av img{width:100%;height:100%;object-fit:cover}
+.sw{width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer}.sw.on{border-color:var(--tx)}
+.help{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;line-height:1.8;font-size:14px;margin-top:8px;white-space:pre-line}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <button class="gear" id="gear" aria-label="settings">⚙️</button>
+  <div class="logo" id="logo">🏫</div>
+  <h1 id="ttl"></h1><p id="sub"></p>
+</div>
+<main id="app"></main>
+<script>
+var L={ar:{school:"ثانوية النور الأهلية",sub:"واجبات الصف الثالث متوسط",ca:"ثالث متوسط (أ)",cb:"ثالث متوسط (ب)",choose:"اختر الفصل",subj:"المواد",back:"→ رجوع",hw:"📝 الواجبات",ex:"🗓️ الامتحانات",qs:"❓ استفسار",hwE:"لا توجد واجبات حالياً 🎉",exE:"لا توجد امتحانات معلنة",qE:"لا توجد أسئلة بعد",addHw:"إضافة الواجب",addEx:"نشر الامتحان",send:"إرسال السؤال",phHw:"اكتب الواجب هنا…",phEx:"تفاصيل الامتحان: المنهج، الوقت…",phQ:"اكتب سؤالك أو استفسارك للمعلّم…",phA:"اكتب الرد…",saveA:"حفظ الرد",del:"حذف",ans:"رد المعلّم",hwW:"واجب",set:"الإعدادات",lang:"اللغة",theme:"الثيم",dark:"🌙 داكن",light:"☀️ فاتح",adm:"وضع الأدمن",on:"مفعّل ✅",off:"متوقف ⛔",help:"مساعدة",me:"حسابي",edit:"تعديل الاسم والصفة",close:"إغلاق",name:"الاسم",role:"الصفة",s:"طالب",t:"معلّم",p:"ولي أمر",go:"دخول",ppl:"إدارة الأشخاص",mk:"تعيين معلّم",rm:"إزالة المعلّم",dp:"حذف الشخص",ph:"تغيير الصورة",sv:"حفظ",nop:"لا يوجد أشخاص بعد",wel:"أهلاً بك 👋 عرّفنا بنفسك",need:"اكتب اسمك أولاً",cd:"حذف؟",needD:"اختر التاريخ واكتب التفاصيل",hS:"1) اختر فصلك ثم المادة.\n2) في الواجبات والامتحانات تقرأ ما ينشره المعلّم.\n3) في الاستفسار اكتب سؤالك وسيرد المعلّم.\n🔴 النقطة الحمراء تعني واجباً جديداً.",hT:"\n\nللمعلّم: افتح المادة ثم أضف الواجب أو الامتحان، وردّ على أسئلة الطلاب من قسم الاستفسار."},
+en:{school:"Al-Noor Private School",sub:"Grade 9 homework",ca:"Grade 9 (A)",cb:"Grade 9 (B)",choose:"Choose your class",subj:"Subjects",back:"← Back",hw:"📝 Homework",ex:"🗓️ Exams",qs:"❓ Questions",hwE:"No homework right now 🎉",exE:"No exams announced",qE:"No questions yet",addHw:"Add homework",addEx:"Publish exam",send:"Send question",phHw:"Write the homework here…",phEx:"Exam details: topics, time…",phQ:"Write your question for the teacher…",phA:"Write a reply…",saveA:"Save reply",del:"Delete",ans:"Teacher's reply",hwW:"homework",set:"Settings",lang:"Language",theme:"Theme",dark:"🌙 Dark",light:"☀️ Light",adm:"Admin mode",on:"On ✅",off:"Off ⛔",help:"Help",me:"My profile",edit:"Edit name and role",close:"Close",name:"Name",role:"Role",s:"Student",t:"Teacher",p:"Parent",go:"Enter",ppl:"Manage people",mk:"Make teacher",rm:"Remove teacher",dp:"Delete person",ph:"Change photo",sv:"Save",nop:"No people yet",wel:"Welcome 👋 tell us who you are",need:"Please enter your name",cd:"Delete?",needD:"Pick a date and write details",hS:"1) Choose your class, then a subject.\n2) Read homework and exams posted by teachers.\n3) Ask your question in Questions and the teacher will reply.\n🔴 A red dot means new homework.",hT:"\n\nTeachers: open a subject to add homework or exams, and reply to questions."}};
+var SUBJ=[["phy","فيزياء","Physics","⚛️"],["chem","كيمياء","Chemistry","🧪"],["bio","أحياء","Biology","🧬"],["math","رياضيات","Math","📐"],["ar","عربي","Arabic","📖"],["en","إنجليزي","English","🔤"],["soc","اجتماعيات","Social Studies","🌍"],["isl","إسلامية","Islamic Studies","🕌"],["art","فنية","Art","🎨"]];
+var COL={blue:["#0b5ed7","#0a3f94"],green:["#13875a","#0b5a3b"],purple:["#7c3aed","#4c1d95"],red:["#d63a4a","#8f1d2b"],orange:["#ea7a0c","#a8500a"]};
+function ld(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var LANG=ld("lang","ar"),COLR=ld("col","blue"),DARK=ld("dark",false),ADM=ld("adm",true),prof=ld("prof",null),open=false,showHelp=false;
+var st={cls:null,sub:null,tab:"hw"},HW=[],QS=[],EX=[],myId=null,STAFF={},PEOPLE=[],pm=false,db=null,canEdit=false,isOwner=false,app=document.getElementById("app");
+function t(k){return L[LANG][k]}
+function isT(){return isOwner?ADM:!!(myId&&STAFF[myId])}
+function esc(s){var d=document.createElement("div");d.textContent=s==null?"":s;return d.innerHTML}
+function fd(x){try{return new Date(x).toLocaleDateString(LANG=="ar"?"ar-SA":"en-GB",{weekday:"long",day:"numeric",month:"long"})}catch(e){return""}}
+function sn(k){return +ld("seen_"+k,0)||0}
+function mark(c,s){sv("seen_"+c+s,Date.now())}
+function cn(k){return t(k=="a"?"ca":"cb")}
+function sname(k){for(var i=0;i<SUBJ.length;i++)if(SUBJ[i][0]==k)return SUBJ[i][LANG=="ar"?1:2];return k}
+function myRole(){return isOwner||(myId&&STAFF[myId])?"t":(prof&&prof.role=="p"?"p":"s")}
+function who(){return prof?prof.name+" ("+t(myRole())+")":""}
+function saveProf(){sv("prof",prof);if(db&&myId)db.doc("people/"+myId).set({name:prof.name,role:prof.role=="p"?"p":"s",photo:prof.photo||""}).catch(function(){})}
+function theme(){var r=document.documentElement,c=COL[COLR]||COL.blue;r.style.setProperty("--pri",c[0]);r.style.setProperty("--pri2",c[1]);r.dataset.theme=DARK?"dark":"light";r.lang=LANG;r.dir=LANG=="ar"?"rtl":"ltr";document.getElementById("ttl").textContent=t("school");document.getElementById("sub").textContent=t("sub")}
+function onboard(){
+  app.innerHTML=`<h2>${t("wel")}</h2><input type="text" id="pn" placeholder="${t("name")}" value="${esc(prof?prof.name:"")}"><select id="pr"><option value="s">${t("s")}</option><option value="p">${t("p")}</option></select><button class="btn" id="pg">${t("go")}</button>`;
+  if(prof)document.getElementById("pr").value=prof.role;
+  document.getElementById("pg").onclick=function(){var n=document.getElementById("pn").value.trim();if(!n)return alert(t("need"));prof={name:n,role:document.getElementById("pr").value,photo:(prof&&prof.photo)||""};saveProf();render()}
+}
+function render(){
+  theme();
+  if(!prof)return onboard();
+  var kv={};app.querySelectorAll("#nt,#nq,#ed").forEach(function(e){kv[e.id]=e.value});
+  var h="";
+  if(!st.cls){
+    h=`<h2>${t("choose")}</h2><div class="grid one">`+["a","b"].map(function(k){return `<button class="tile big" data-c="${k}"><span class="ic">🎓</span><b>${cn(k)}</b></button>`}).join("")+"</div>";
+    app.innerHTML=h;app.querySelectorAll("[data-c]").forEach(function(b){b.onclick=function(){st.cls=b.dataset.c;render()}});return}
+  if(!st.sub){
+    h=`<button class="back" id="bk">${t("back")}</button><h2>${cn(st.cls)} — ${t("subj")}</h2><div class="grid">`+SUBJ.map(function(s){
+      var nw=HW.some(function(x){return x.cls==st.cls&&x.sub==s[0]&&x.ts>sn(st.cls+s[0])});
+      var n=HW.filter(function(x){return x.cls==st.cls&&x.sub==s[0]}).length;
+      return `<button class="tile" data-s="${s[0]}">${nw?'<i class="dot"></i>':""}<span class="ic">${s[3]}</span><b>${s[LANG=="ar"?1:2]}</b>${n?`<div><span class="tag">${n} ${t("hwW")}</span></div>`:""}</button>`}).join("")+"</div>";
+    app.innerHTML=h;
+    document.getElementById("bk").onclick=function(){st.cls=null;render()};
+    app.querySelectorAll("[data-s]").forEach(function(b){b.onclick=function(){st.sub=b.dataset.s;st.tab="hw";mark(st.cls,st.sub);render()}});return}
+  var f=function(a){return a.filter(function(x){return x.cls==st.cls&&x.sub==st.sub})};
+  var hw=f(HW).sort(function(a,b){return b.ts-a.ts}),qs=f(QS).sort(function(a,b){return b.ts-a.ts}),ex=f(EX).sort(function(a,b){return a.date>b.date?1:-1}),T=isT();
+  h=`<button class="back" id="bk">${t("back")}</button><h2>${sname(st.sub)} — ${cn(st.cls)}</h2><div class="tabs">`+["hw","ex","qs"].map(function(k){return `<button data-t="${k}" class="${st.tab==k?"on":""}">${t(k)}</button>`}).join("")+"</div>";
+  if(st.tab=="hw"){
+    if(T)h+=`<textarea id="nt" placeholder="${t("phHw")}"></textarea><button class="btn" id="add">${t("addHw")}</button><div style="height:14px"></div>`;
+    h+=hw.length?hw.map(function(x){return `<div class="item"><div class="t">${esc(x.text)}</div><div class="m">${fd(x.ts)}${x.by?" · "+esc(x.by):""}</div>${T?`<button class="btn s d" data-dh="${x.id}">${t("del")}</button>`:""}</div>`}).join(""):`<div class="empty">${t("hwE")}</div>`;
+  }else if(st.tab=="ex"){
+    if(T)h+=`<input type="date" id="ed"><textarea id="nt" placeholder="${t("phEx")}"></textarea><button class="btn" id="addx">${t("addEx")}</button><div style="height:14px"></div>`;
+    h+=ex.length?ex.map(function(x){return `<div class="item"><b>📅 ${fd(x.date)}</b><div class="t">${esc(x.text)}</div>${x.by?`<div class="m">${esc(x.by)}</div>`:""}${T?`<button class="btn s d" data-dx="${x.id}">${t("del")}</button>`:""}</div>`}).join(""):`<div class="empty">${t("exE")}</div>`;
+  }else{
+    h+=`<textarea id="nq" placeholder="${t("phQ")}"></textarea><button class="btn" id="ask">${t("send")}</button><div style="height:14px"></div>`;
+    h+=qs.length?qs.map(function(x){return `<div class="item"><div class="t">${esc(x.q)}</div><div class="m">${fd(x.ts)}${x.by?" · "+esc(x.by):""}</div>${x.a?`<div class="ans"><b>${t("ans")}${x.ab?" ("+esc(x.ab)+")":""}:</b><br>${esc(x.a)}</div>`:""}${T?`<textarea data-ta="${x.id}" placeholder="${t("phA")}" style="min-height:50px;margin-top:8px">${esc(x.a||"")}</textarea><button class="btn s" data-an="${x.id}">${t("saveA")}</button> <button class="btn s d" data-dq="${x.id}">${t("del")}</button>`:""}</div>`}).join(""):`<div class="empty">${t("qE")}</div>`;
+  }
+  app.innerHTML=h;
+  for(var k in kv){var e=document.getElementById(k);if(e&&kv[k])e.value=kv[k]}
+  var $=function(id){return document.getElementById(id)};
+  $("bk").onclick=function(){mark(st.cls,st.sub);st.sub=null;render()};
+  app.querySelectorAll("[data-t]").forEach(function(b){b.onclick=function(){st.tab=b.dataset.t;render()}});
+  if($("add"))$("add").onclick=function(){var v=$("nt").value.trim();if(!v||!db)return;db.collection("hw").add({cls:st.cls,sub:st.sub,text:v,by:prof.name,ts:Date.now()});$("nt").value=""};
+  if($("addx"))$("addx").onclick=function(){var v=$("nt").value.trim(),d=$("ed").value;if(!v||!d||!db)return alert(t("needD"));db.collection("ex").add({cls:st.cls,sub:st.sub,text:v,date:d,by:prof.name,ts:Date.now()});$("nt").value=""};
+  if($("ask"))$("ask").onclick=function(){var v=$("nq").value.trim();if(!v||!db)return;db.collection("qs").add({cls:st.cls,sub:st.sub,q:v,a:"",by:who(),ts:Date.now()});$("nq").value=""};
+  app.querySelectorAll("[data-dh]").forEach(function(b){b.onclick=function(){if(confirm(t("cd")))db.doc("hw/"+b.dataset.dh).delete()}});
+  app.querySelectorAll("[data-dx]").forEach(function(b){b.onclick=function(){if(confirm(t("cd")))db.doc("ex/"+b.dataset.dx).delete()}});
+  app.querySelectorAll("[data-dq]").forEach(function(b){b.onclick=function(){if(confirm(t("cd")))db.doc("qs/"+b.dataset.dq).delete()}});
+  app.querySelectorAll("[data-an]").forEach(function(b){b.onclick=function(){var v=app.querySelector('[data-ta="'+b.dataset.an+'"]').value.trim();db.doc("qs/"+b.dataset.an).update({a:v,ab:prof.name})}});
+}
+function panel(){
+  var o=document.getElementById("sp");if(o)o.remove();if(!open)return;
+  var d=document.createElement("div");d.id="sp";d.className="ov";
+  d.innerHTML=`<div class="sheet"><h2>⚙️ ${t("set")}</h2>
+  <h3>${t("lang")}</h3><div class="row"><button class="btn ${LANG=="ar"?"":"g"}" data-l="ar">العربية</button><button class="btn ${LANG=="en"?"":"g"}" data-l="en">English</button></div>
+  <h3>${t("theme")}</h3><div class="row">${Object.keys(COL).map(function(k){return `<span class="sw ${COLR==k?"on":""}" data-col="${k}" style="background:${COL[k][0]}"></span>`}).join("")}<button class="btn g" id="dk">${DARK?t("light"):t("dark")}</button></div>
+  ${isOwner?`<h3>${t("adm")}</h3><div class="row"><button class="btn ${ADM?"":"g"}" id="am">${ADM?t("on"):t("off")}</button></div>`:""}
+  <h3>${t("me")}</h3><div class="row"><div class="av">${prof&&prof.photo?`<img src="${prof.photo}">`:"👤"}</div><button class="btn g s" id="ph">${t("ph")}</button><input type="file" accept="image/*" id="pf" hidden></div><input type="text" id="pn2" value="${esc(prof?prof.name:"")}" style="margin-top:8px"><select id="pr2"><option value="s">${t("s")}</option><option value="p">${t("p")}</option></select><button class="btn s" id="ps">${t("sv")}</button>${isOwner?`<h3>${t("ppl")}</h3><button class="btn g" id="pp">👥 ${t("ppl")}</button>`:""}
+  <h3>${t("help")}</h3><button class="btn g" id="hp">❔ ${t("help")}</button>${showHelp?`<div class="help">${esc(t("hS")+(isT()?t("hT"):""))}</div>`:""}
+  <div style="margin-top:18px"><button class="btn" id="cl">${t("close")}</button></div></div>`;
+  document.body.appendChild(d);
+  var $=function(s){return d.querySelector(s)};
+  d.onclick=function(e){if(e.target==d){open=false;panel()}};
+  $("#cl").onclick=function(){open=false;panel()};
+  d.querySelectorAll("[data-l]").forEach(function(b){b.onclick=function(){LANG=b.dataset.l;sv("lang",LANG);render();panel()}});
+  d.querySelectorAll("[data-col]").forEach(function(b){b.onclick=function(){COLR=b.dataset.col;sv("col",COLR);render();panel()}});
+  $("#dk").onclick=function(){DARK=!DARK;sv("dark",DARK);render();panel()};
+  if($("#am"))$("#am").onclick=function(){ADM=!ADM;sv("adm",ADM);render();panel()};
+  $("#pr2").value=prof&&prof.role=="p"?"p":"s";
+  $("#ph").onclick=function(){$("#pf").click()};
+  $("#pf").onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var c=document.createElement("canvas");c.width=c.height=96;var x=c.getContext("2d"),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,96,96);prof.photo=c.toDataURL("image/jpeg",.8);saveProf();panel()};im.src=r.result};r.readAsDataURL(f)};
+  $("#ps").onclick=function(){var n=$("#pn2").value.trim();if(!n)return alert(t("need"));prof.name=n;prof.role=$("#pr2").value;saveProf();render();panel()};
+  if($("#pp"))$("#pp").onclick=function(){pm=true;open=false;panel();pplPanel()};
+  $("#hp").onclick=function(){showHelp=!showHelp;panel()};
+}
+function pplPanel(){
+  var o=document.getElementById("pl");if(o)o.remove();if(!pm)return;
+  var d=document.createElement("div");d.id="pl";d.className="ov";
+  var l=PEOPLE.filter(function(p){return p.id!=myId});
+  d.innerHTML=`<div class="sheet"><h2>👥 ${t("ppl")}</h2>`+(l.length?l.map(function(p){var s=!!STAFF[p.id];return `<div class="item"><div class="row"><div class="av">${p.photo?`<img src="${p.photo}">`:"👤"}</div><div style="flex:1"><b>${esc(p.name)}</b><div class="m">${s?t("t"):t(p.role=="p"?"p":"s")}</div></div></div><button class="btn s ${s?"d":""}" data-st="${p.id}">${s?t("rm"):t("mk")}</button> <button class="btn s g" data-dp="${p.id}">${t("dp")}</button></div>`}).join(""):`<div class="empty">${t("nop")}</div>`)+`<div style="margin-top:12px"><button class="btn" id="pc">${t("close")}</button></div></div>`;
+  document.body.appendChild(d);
+  d.onclick=function(e){if(e.target==d){pm=false;pplPanel()}};
+  d.querySelector("#pc").onclick=function(){pm=false;pplPanel()};
+  d.querySelectorAll("[data-st]").forEach(function(b){b.onclick=function(){var i=b.dataset.st;if(STAFF[i])db.doc("staff/"+i).delete();else db.doc("staff/"+i).set({on:true})}});
+  d.querySelectorAll("[data-dp]").forEach(function(b){b.onclick=function(){if(!confirm(t("cd")))return;var i=b.dataset.dp;db.doc("people/"+i).delete();db.doc("staff/"+i).delete()}});
+}
+document.getElementById("gear").onclick=function(){open=true;showHelp=false;panel()};
+function snap(s){return s.docs.map(function(d){var x=d.data();x.id=d.id;return x})}
+function rr(){if(prof&&!document.getElementById("pn"))render()}
+render();
+(async function(){
+  try{var u=await claude.use("user");if(u){canEdit=!!(u.canEdit&&u.canEdit());isOwner=!!(u.isOwner&&u.isOwner());try{myId=await u.id()}catch(e){}}}catch(e){}
+  try{db=await claude.use("db")}catch(e){}
+  if(db){
+    db.collection("hw").onSnapshot(function(s){HW=snap(s);rr()});
+    db.collection("ex").onSnapshot(function(s){EX=snap(s);rr()});
+    db.collection("qs").onSnapshot(function(s){QS=snap(s);rr()});
+    db.collection("people").onSnapshot(function(s){PEOPLE=snap(s);if(pm)pplPanel()});
+    db.collection("staff").onSnapshot(function(s){STAFF={};snap(s).forEach(function(x){STAFF[x.id]=1});rr();if(pm)pplPanel()});
+    if(myId&&prof)saveProf();
+  }
+  rr();
+})();
+</script>
+</body>
+</html>
